@@ -117,8 +117,11 @@ namespace ManagedAutoHotkeyParser
 
                 string key2;
                 HotkeySymbolModifiers modifiers2;
+
                 // We subtract the hotkey token length from total length to get ignore the token
-                if (!TryParseHalf(hotkeys[1], hotkeys[1].Length - HotkeyExpression.HotkeyToken.Length, out key2, out modifiers2))
+                string hotkey2 = hotkeys[1].Substring(0, hotkeys[1].Length - HotkeyExpression.HotkeyToken.Length);
+
+                if (!TryParseHalf(hotkey2, hotkey2.Length, out key2, out modifiers2))
                 {
                     return false;
                 }
@@ -135,6 +138,11 @@ namespace ManagedAutoHotkeyParser
         {
             key = null;
             modifiers = HotkeySymbolModifiers.None;
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
 
             for (int i = 0; i < maxIndex; i++)
             {
