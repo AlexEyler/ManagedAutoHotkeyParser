@@ -167,5 +167,27 @@ namespace UnitTests.ExpressionTests
             Assert.Equal(hkExpr.Key2, "m");
             Assert.Equal(hkExpr.Modifiers2, HotkeySymbolModifiers.Ctrl);
         }
+
+        [Fact]
+        public void TryParse_AmpersandWithBlankIsInvalid()
+        {
+            const string expressionString1 = "^k &::";
+            Expression expr;
+            Assert.False(HotkeyExpression.TryParse(expressionString1, out expr));
+            Assert.Null(expr);
+
+            const string expressionString2 = "& ^k::";
+            Assert.False(HotkeyExpression.TryParse(expressionString2, out expr));
+            Assert.Null(expr);
+        }
+
+        [Fact]
+        public void TryParse_MoreThanOneAmpersandIsInvalid()
+        {
+            const string expressionString = "^k & ^m & ^l";
+            Expression expr;
+            Assert.False(HotkeyExpression.TryParse(expressionString, out expr));
+            Assert.Null(expr);
+        }
     }
 }
