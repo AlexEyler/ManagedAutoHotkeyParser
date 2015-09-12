@@ -63,8 +63,12 @@ namespace UnitTests.ExpressionTests
 
                     HotkeyExpression hkExpr = expr as HotkeyExpression;
                     Assert.NotNull(hkExpr);
-                    Assert.True(hkExpr.Modifiers1.Equals(modifier));
+                    Assert.Equal(modifier, hkExpr.Modifiers1);
                     Assert.True(string.IsNullOrEmpty(hkExpr.Key1));
+
+                    // Make sure we didn't set Key2 or Modifiers2
+                    Assert.Equal(HotkeySymbolModifiers.None, hkExpr.Modifiers2);
+                    Assert.True(string.IsNullOrEmpty(hkExpr.Key2));
                 }
             }
         }
@@ -81,6 +85,10 @@ namespace UnitTests.ExpressionTests
             Assert.NotNull(hkExpr);
             Assert.True(hkExpr.Modifiers1.Equals(HotkeySymbolModifiers.None));
             Assert.Equal(key, hkExpr.Key1);
+
+            // Make sure we didn't set Key2 or Modifiers2
+            Assert.Equal(HotkeySymbolModifiers.None, hkExpr.Modifiers2);
+            Assert.True(string.IsNullOrEmpty(hkExpr.Key2));
         }
 
         [Fact]
@@ -106,6 +114,10 @@ namespace UnitTests.ExpressionTests
                     Assert.NotNull(hkExpr);
                     Assert.True(hkExpr.Modifiers1.Equals(modifier));
                     Assert.Equal(key, hkExpr.Key1);
+
+                    // Make sure we didn't set Key2 or Modifiers2
+                    Assert.Equal(HotkeySymbolModifiers.None, hkExpr.Modifiers2);
+                    Assert.True(string.IsNullOrEmpty(hkExpr.Key2));
                 }
             }
         }
@@ -124,6 +136,10 @@ namespace UnitTests.ExpressionTests
             Assert.NotNull(hkExpr);
             Assert.Equal(modifiers, hkExpr.Modifiers1);
             Assert.Equal(key, hkExpr.Key1);
+
+            // Make sure we didn't set Key2 or Modifiers2
+            Assert.Equal(HotkeySymbolModifiers.None, hkExpr.Modifiers2);
+            Assert.True(string.IsNullOrEmpty(hkExpr.Key2));
         }
 
         [Fact]
