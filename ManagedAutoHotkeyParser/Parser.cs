@@ -42,6 +42,10 @@ namespace ManagedAutoHotkeyParser
             {
                 return true;
             }
+            else if (HotkeyExpression.TryParse(line, out expr))
+            {
+                return true;
+            }
 
             return false;
         }

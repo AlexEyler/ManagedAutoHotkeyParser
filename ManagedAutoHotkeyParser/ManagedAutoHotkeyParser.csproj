@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Expressions\CommentExpression.cs" />
     <Compile Include="Expressions\Expression.cs" />
+    <Compile Include="Expressions\HotkeyExpression.cs" />
     <Compile Include="ExpressionTree.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -35,5 +35,19 @@ namespace UnitTests
             Assert.True(parser.TryParse(commentString));
             Assert.True(parser.Script.ContainsExpression(expr));
         }
+
+        [Fact]
+        public void Parse_ParsesHotkey()
+        {
+            // HotkeyExpression tests are in ExpressionTests/HotkeyTests.cs
+            Parser parser = new Parser();
+            const string hotkey = "^x::"; // ctrl+x
+            HotkeyExpression expr = new HotkeyExpression(hotkey);
+            expr.Modifiers1 = HotkeySymbolModifiers.Ctrl;
+            expr.Key1 = "x";
+
+            Assert.True(parser.TryParse(hotkey));
+            Assert.True(parser.Script.ContainsExpression(expr));
+        }
     }
 }
